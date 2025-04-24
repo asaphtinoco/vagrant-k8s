@@ -1,6 +1,6 @@
 VAGRANTFILE_API_VERSION = "2"
-require 'yaml'
 
+NODE_COUNT=2
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "bento/ubuntu-22.04"
@@ -13,11 +13,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Define static IPs for easier communication
   node_ips = {
     1 => "192.168.56.11",
-    2 => "192.168.56.12",
-    3 => "192.168.56.13"
+    2 => "192.168.56.12"
   }
 
-  (1..3).each do |i|
+  (1..NODE_COUNT).each do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname = "node#{i}"
 
